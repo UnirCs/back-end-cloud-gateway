@@ -23,6 +23,15 @@ spring:
     gateway:
       server:
         webflux:
+          routes:
+            - id: books-route
+              uri: lb://ms-books-catalogue
+              predicates:
+                - Path=/books/**
+            - id: payments-route
+              uri: lb://ms-books-payments
+              predicates:
+                - Path=/payments/**
           discovery:
             locator:
               enabled: true
